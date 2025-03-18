@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -5,16 +7,21 @@ public class Main {
         int moda = 0;
         int soma = 0;
         int maior = 0;
+        int num = 0;
 
-        for (int i = 0; i < vetor.length; i++) {
-            for (int j = 0; j < vetor.length; j++) {
-                if (vetor[i] == vetor[j]) {
-                    soma++;
+        int[] vetors = Arrays.stream(vetor).sorted().toArray();
+
+        num = vetors[0];
+        for (int i = 0; i < vetors.length; i++) {
+            if (vetors[i] == num) {
+                soma++;
+                if (soma >= maior) {
+                    maior = soma;
+                    moda = vetors[i];
                 }
-            }
-            if (soma >= maior) {
-                maior = soma;
-                moda = vetor[i];
+            } else {
+                soma = 0;
+                num = vetors[i];
             }
         }
         System.out.println("Moda: " + moda);
